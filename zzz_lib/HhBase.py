@@ -2,8 +2,10 @@
 
 class HhBase:
 
-    @staticmethod   # 转int
+    @staticmethod  # 转int
     def toInt(inputStr):
-        try: return int(inputStr)
-        except ValueError as e: print('-----------Warning----------- {}: {}'.format('ValueError',e))
+        try:
+            return int(inputStr)
+        except ValueError as e:
+            print('-----------Warning----------- {}: {}'.format('ValueError', e))
         return False

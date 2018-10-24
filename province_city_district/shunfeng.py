@@ -5,6 +5,7 @@ import traceback
 from zzz_lib.HhTime import HhTime
 from zzz_lib.HhNetworm import HhNetworm
 
+
 # 顺丰地址库
 
 def shunfeng():
@@ -12,29 +13,31 @@ def shunfeng():
     url1 = "http://www.sf-express.com/sf-service-owf-web/service/region/A000086000/subRegions"
     url2 = "http://www.sf-express.com/sf-service-owf-web/service/region/%s/subRegions"
     try:
-        js1 = hhnetworm.getRes(url1,data={'lang':'sc'},result='j')
+        js1 = hhnetworm.getRes(url1, data={'lang': 'sc'}, result='j')
         for aa in js1:
             province = aa['name']
 
-            js2 = hhnetworm.getRes(url2 % str(aa['code']),data={'level':2,'lang':'sc'},result='j')
+            js2 = hhnetworm.getRes(url2 % str(aa['code']), data={'level': 2, 'lang': 'sc'}, result='j')
             for bb in js2:
                 city = bb['name']
 
                 if str(bb['level']).strip() == "4":
-                    dic = {'province':province,'city':city,'district':''}
+                    dic = {'province': province, 'city': city, 'district': ''}
                     rt_arr.append(dic)
                     print(dic)
                 else:
-                    js3 = hhnetworm.getRes(url2 % str(bb['code']),data={'level':3,'lang':'sc','region':'cn'},result='j')
+                    js3 = hhnetworm.getRes(url2 % str(bb['code']), data={'level': 3, 'lang': 'sc', 'region': 'cn'}, result='j')
                     for cc in js3:
-                        dic = {'province':province,'city':city,'district':cc['name']}
+                        dic = {'province': province, 'city': city, 'district': cc['name']}
                         rt_arr.append(dic)
                         print(dic)
-        HhTime.costPrinter(st_time,pjName='顺丰地址库',dataArr=rt_arr)
+        HhTime.costPrinter(st_time, pjName='顺丰地址库', dataArr=rt_arr)
         finish = True
     except:
         print("----------Wrong: {}".format('顺丰地址库'))
         traceback.print_exc()
-    finally: return rt_arr if finish else []
+    finally:
+        return rt_arr if finish else []
+
 
 shunfeng()
