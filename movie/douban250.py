@@ -4,7 +4,7 @@ import traceback
 
 from zzz_lib.HhTime import HhTime
 from zzz_lib.HhNetworm import HhNetworm
-
+from zzz_lib.HhExcel import HhExcel
 
 # 豆瓣250
 
@@ -52,4 +52,7 @@ def douban250():
         return rt_arr if finish else []
 
 
-douban250()
+this_data = douban250()
+
+excel_1 = HhExcel()
+excel_1.writer(r'C:\Users\za-huanghai\Desktop\xxx.xlsx', [{'sheetName': 'xxx', 'fields': ['source', 'name', 'sorce', 'type', 'country', 'year', 'director', 'actors', 'pictureUrl', 'have_watched'], 'data': this_data}])
