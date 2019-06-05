@@ -2,6 +2,7 @@
 import time
 import traceback
 
+from zzz_lib.HhExcel import HhExcel
 from zzz_lib.HhTime import HhTime
 from zzz_lib.HhNetworm import HhNetworm
 
@@ -40,4 +41,7 @@ def shunfeng():
         return rt_arr if finish else []
 
 
-shunfeng()
+this_data = shunfeng()
+
+excel_1 = HhExcel()
+excel_1.writer(r'C:\Users\za-huanghai\Desktop\xxx.xlsx', [{'sheetName': 'xxx', 'fields': ['province', 'city', 'district'], 'data': this_data}])

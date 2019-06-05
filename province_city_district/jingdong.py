@@ -2,6 +2,7 @@
 import time
 import traceback
 
+from zzz_lib.HhExcel import HhExcel
 from zzz_lib.HhTime import HhTime
 from zzz_lib.HhNetworm import HhNetworm
 
@@ -46,4 +47,7 @@ def jingdong():
         return rt_arr if finish else []
 
 
-jingdong()
+this_data = jingdong()
+
+excel_1 = HhExcel()
+excel_1.writer(r'C:\Users\za-huanghai\Desktop\xxx.xlsx', [{'sheetName': 'xxx', 'fields': ['province', 'city', 'district', 'area'], 'data': this_data}])
